@@ -94,8 +94,6 @@ class Telefono
                 }
                 
             }
-            else 
-                cout << "No se encontro el contacto" << endl;
         }
 
         void ordenarContactos() {
@@ -118,29 +116,52 @@ class Telefono
             }
         }
 
-        
+ 
+    
 };
 int main() {
     Contacto c1("Abel", 934589333 , "abelperez@gmail.com");
     Contacto c2("Bryan", 987654321 , "bryangomez@gmail.com");
-    Contacto c3("Cesar", 912345678 , "cesarlopez@gmail.com");    
+    Contacto c3("Cesar", 912345678 , "cesarlopez@gmail.com"); 
 
     Telefono telefono;
-    telefono.agregarContacto(c2).agregarContacto(c1).agregarContacto(c3);
 
+    telefono.agregarContacto(c3).agregarContacto(c1).agregarContacto(c2);
+    
     char opcion;
     do {
         cout << "----- Menú -----" << endl;
-        cout << "1. Buscar contacto" << endl;
-        cout << "2. Actualizar información de contacto" << endl;
-        cout << "3. Ordenar contactos" << endl;
-        cout << "4. Mostrar contactos" << endl;
+        cout << "1. Agregar contacto" << endl;
+        cout << "2. Buscar contacto" << endl;
+        cout << "3. Actualizar información de contacto" << endl;
+        cout << "4. Ordenar contactos" << endl;
+        cout << "5. Mostrar contactos" << endl;
         cout << "0. Salir" << endl;
         cout << "Ingrese una opción: ";
         cin >> opcion;
 
         switch (opcion) {
             case '1': {
+                string nombre, correo;
+                int numero;
+
+                cout << "Ingrese el nombre del contacto: ";
+                cin.ignore();
+                getline(cin, nombre);
+
+                cout << "Ingrese el número del contacto: ";
+                cin >> numero;
+
+                cout << "Ingrese el correo del contacto: ";
+                cin.ignore();
+                getline(cin, correo);
+
+                Contacto nuevoContacto(nombre, numero, correo);
+                telefono.agregarContacto(nuevoContacto);
+                cout << "Contacto agregado exitosamente." << endl;
+                break;
+            }
+            case '2': {
                 string nombre;
                 cout << "Ingrese el nombre del contacto a buscar: ";
                 cin.ignore();
@@ -148,7 +169,7 @@ int main() {
                 telefono.buscarContacto(nombre);
                 break;
             }
-            case '2': {
+            case '3': {
                 string nombre;
                 cout << "Ingrese el nombre del contacto a actualizar: ";
                 cin.ignore();
@@ -156,12 +177,12 @@ int main() {
                 telefono.actualizarInformacion(nombre);
                 break;
             }
-            case '3': {
+            case '4': {
                 telefono.ordenarContactos();
                 cout << "Los contactos han sido ordenados." << endl;
                 break;
             }
-            case '4': {
+            case '5': {
                 telefono.mostrarContactos();
                 break;
             }
